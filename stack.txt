@@ -1,0 +1,10 @@
+    variable        value
+//   num4           7
+//   myArr1         0x12
+//   myArr1.Length  4
+//   myArr2         0x12
+//   num5           7   
+//
+//
+//
+//
