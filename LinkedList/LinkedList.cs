@@ -2,7 +2,7 @@ namespace data_structures.LinkedList;
 
 public class LinkedList
 {
-    private Node _head;
+    private Node<int> _head;
 
     public LinkedList()
     {
@@ -11,25 +11,26 @@ public class LinkedList
 
     public LinkedList(int value)
     {
-        this._head.Value = value;
+        this._head.SetValue(value);
     }
+    //Add NewNode
     public void Add(int value)
     {
         if (this._head == null)
         {
-            this._head = new Node(value);
-            this._head.Value = value;
-            this._head.Next = null;
+            this._head = new Node<int>(value);
+            this._head.SetValue(value); 
+            this._head.SetNext(null); 
         }
         else
         {
-            Node newNode = new Node(value);
-            Node current  = this._head;
-            while (current.Next != null)
+            Node<int> newNode = new Node<int>(value);
+            Node<int> current  = this._head;
+            while (current.HasNext())
             {
-                current = current.Next;
+                current = current.GetNext();
             }
-            current.Next = newNode;
+            current.SetNext(newNode);
         }
     }
    
@@ -41,12 +42,46 @@ public class LinkedList
         {
             return;
         }
-        var currentNode = _head;
-        while (currentNode.Next != null)
+
+        if (_head.GetValue() == data)
         {
-            currentNode = currentNode.Next;
+            _head= _head.GetNext();
         }
-        currentNode.Next = null;
+        Node<int> currentNode = _head;
+        while (currentNode.HasNext())
+        {
+            if (currentNode.GetNext().GetValue() == data )
+            {
+                currentNode = currentNode.GetNext().GetNext();
+                return;
+            }
+            currentNode = currentNode.GetNext();
+        }
+        
+    }
+
+    public String Display()
+    {
+        string result = "";
+        if(_head == null)
+        {
+            
+            return "NULL";
+        }
+        var currentNode = _head;
+        while (currentNode.HasNext())
+        {
+            result += currentNode.GetValue().ToString() + "->";
+            currentNode = currentNode.GetNext();
+        }
+
+        if (currentNode.GetValue() != null)
+        {
+            result += currentNode.GetValue().ToString();
+        }
+        return result;
+        
+       
     }
     // Method to remove all the values from the list
     public void RemoveAllValues(int data)
