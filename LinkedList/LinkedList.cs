@@ -52,7 +52,7 @@ public class LinkedList
         {
             if (currentNode.GetNext().GetValue() == data )
             {
-                currentNode = currentNode.GetNext().GetNext();
+                currentNode.SetNext(currentNode.GetNext().GetNext());
                 return;
             }
             currentNode = currentNode.GetNext();
